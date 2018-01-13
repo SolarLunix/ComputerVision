@@ -4,7 +4,7 @@ import numpy as np
 class Gabor:
 
     def __init__(self, filters=1, k_size=100, orientations=1, lamb=1,
-                 psi=0, sigma=10, gamma=.5):
+                 psi=0, gamma=.5):
         self.filters = filters
         k = int(k_size/2)
         self.x_max = k
@@ -14,7 +14,7 @@ class Gabor:
         self.lamb = lamb
         self.theta_num = orientations
         self.psi = psi
-        self.sigma = sigma
+        self.sigma = k_size/10
         self.gamma = gamma
 
     def x_mark(self, x, y, t):
