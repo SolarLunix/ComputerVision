@@ -1,7 +1,7 @@
 import gabor
 import cv2 as cv
 
-g = gabor.Gabor(ori=1, ksize=100)
+g = gabor.Gabor(orientations=9, k_size=100)
 result = g.create_filters()
 
 print len(result)
