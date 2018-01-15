@@ -1,21 +1,21 @@
 import math
 import numpy as np
+import cv2 as cv
 
 class Gabor:
 
-    def __init__(self, filters=1, k_size=100, orientations=1, lamb=1,
-                 psi=0, gamma=.5):
-        self.filters = filters
+    def __init__(self, n_filters=9, k_size=37, sigma=4.35, lamb=8.25, psi=0.1, gamma=0.9):
+        self.n_filters = n_filters
         k = int(k_size/2)
         self.x_max = k
         self.x_min = -k
         self.y_max = k
         self.y_min = -k
         self.lamb = lamb
-        self.theta_num = orientations
         self.psi = psi
-        self.sigma = k_size/10
+        self.sigma = sigma
         self.gamma = gamma
+        self.filters = []
 
     def x_mark(self, x, y, t):
         ct = math.cos(t)
@@ -41,9 +41,8 @@ class Gabor:
         return p
 
     def create_filters(self):
-        filters = []
-        d = 180 / self.theta_num
-        for i in range(0, self.theta_num):
+        d = 180 / self.n_filters
+        for i in range(0, self.n_filters):
             t = i * d
             filt = []
             for j in range(self.x_min, self.x_max):
@@ -53,13 +52,12 @@ class Gabor:
                     row.append(pixel)
                 filt.append(row)
             n_filter = np.array(filt)
-            filters.append(n_filter)
-        return filters
+            self.filters.append(n_filter)
+        return self.filters
 
-
-
-
-
-
-
-
+    def apply_filters(self, img):
+        new_img = np.zeros_like(img)
+        for filter1 in self.filters:
+            f_img = cv.filter2D(img, cv.CV_8UC3, filter1)
+            np.maximum(new_img, f_img, new_img)
+        return new_img
