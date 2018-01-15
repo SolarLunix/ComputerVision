@@ -4,7 +4,7 @@ import cv2 as cv
 
 class Gabor:
 
-    def __init__(self, n_filters=9, k_size=37, sigma=4.35, lamb=8.25, psi=0.1, gamma=0.9):
+    def __init__(self, n_filters=9, k_size=37, sigma=4.35, lamb=8.25, psi=0.5, gamma=0.9):
         self.n_filters = n_filters
         k = int(k_size/2)
         self.x_max = k

@@ -11,7 +11,7 @@ img2 = cv.resize(img2, (467, 350))
 img3 = cv.imread("../Pixel_melissa.png")
 
 # Initialise the gabor class and create filters
-g = gabor.Gabor()
+g = gabor.Gabor(n_filters=20)
 result = g.create_filters()
 
 
