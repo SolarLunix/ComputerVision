@@ -15,7 +15,7 @@ g = gabor.Gabor(n_filters=20)
 result = g.create_filters()
 
 
-# Apply filters to image
+# Apply filters to image and view
 g_img = g.apply_filters(img)
 cv.imshow("Phantom", g_img)
 

@@ -2,6 +2,7 @@ import math
 import numpy as np
 import cv2 as cv
 
+
 class Gabor:
 
     def __init__(self, n_filters=9, k_size=37, sigma=4.35, lamb=8.25, psi=0.5, gamma=0.9):
